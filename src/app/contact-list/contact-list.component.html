@@ -1,0 +1,34 @@
+<div>
+  <label for="contact-name">Name</label>
+  <input id="contact-name" type="text" [(ngModel)]="newContact.name">
+</div>
+<div>
+  <label for="contact-email">Email</label>
+  <input id="contact-email" type="text" [(ngModel)]="newContact.email">
+</div>
+<div>
+  <label for="contact-phone">Phone Number</label>
+  <input id="contact-phone" type="text" [(ngModel)]="newContact.phoneNumber">
+</div>
+<div>
+  <label for="contact-image">Image</label>
+  <input id="contact-image" type="text" [(ngModel)]="newContact.image">
+</div>
+
+<button (click)="addContact()">Submit New Contact</button>
+
+
+<label for="contact-search"> Search Contacts: </label>
+<input id="contact-search" placeholder="Search" type="text" [(ngModel)]="pattern">
+<select [(ngModel)]="selectedField">
+  <option *ngFor="let field of ['name', 'email', 'phoneNumber']" [ngValue]="field">{{ field }}</option>
+</select>
+
+<ul>
+  <li *ngFor="let contact of contacts | contactFilter: selectedField:pattern;">
+    <span>{{ contact.getName() }}</span>
+    <span>{{ contact.getEmail() }}</span>
+    <span>{{ contact.phoneNumber }}</span>
+    <img [src]="contact.image">
+  </li>
+</ul>
